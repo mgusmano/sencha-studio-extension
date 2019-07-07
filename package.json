@@ -144,7 +144,6 @@
                     "command": "extension.toggleTerminal",
                     "group": "navigation@2"
                 }
-
             ],
             "view/title": [
                 {

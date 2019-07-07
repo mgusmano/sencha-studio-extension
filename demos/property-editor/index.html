@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html manifest="">
+<head>
+    <title>property-editor</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
+    <script src="property-editor.js"></script>
+
+<script>
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    var pe = document.getElementById('pe');
+    var data = [
+        {"className": "text", "configName": "the name that is very long", "set": "no", "type": "type", "value1": "title1", "value2": "title1"},
+        {"className": "text", "configName": "the name", "set": "no", "type": "type", "value1": "title1", "value2": "title1"},
+        {"className": "text", "configName": "the name", "set": "no", "type": "type", "value1": "title1", "value2": "title1"},
+        {"className": "text", "configName": "the name", "set": "no", "type": "type", "value1": "title1", "value2": "title1"},
+        {"className": "text", "configName": "the name", "set": "no", "type": "type", "value1": "title1", "value2": "title1"},
+    ]
+    pe.data = data;
+});
+
+</script>
+
+</head>
+<body>
+    <property-editor id="pe"></property-editor>
+</body>
+</html>

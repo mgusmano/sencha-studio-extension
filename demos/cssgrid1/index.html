@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html manifest="">
+    <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
+    <title>css grid</title>
+    <script src="https://unpkg.com/split-grid/dist/split-grid.js"></script>
+
+    <style>
+body {margin: 0px; padding: 0px; background: black;}
+html {margin: 0px; padding: 0px; width:100%; height: 100%;box-sizing: border-box;}
+*, *:before, *:after {box-sizing: inherit;}
+
+.container {
+    display: grid;
+    width: 100vw;  height: 100vh;
+    /* row-gap: 0;
+    column-gap: 0;
+    column-rule: 4px double #ff00ff; */
+    grid-template-columns: 180px 5px auto 5px 180px;
+    grid-template-rows: 50px auto 50px;
+    grid-template-areas:
+        "header header header header header"
+        "left split1 main split2 right"
+        "footer footer footer footer footer";
+}
+
+.header {
+    padding: 10px;
+    background: #3D474C;
+    color: white;
+    grid-area: header;
+    /* grid-area: 1 / 2 / 1 / 4; */
+    /* grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 4; */
+}
+
+.left {
+    padding: 10px;
+    background: #32373a;
+    color: white;
+    grid-area: left;
+    /* grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 2; */
+}
+
+.split1 {
+    cursor: ew-resize;
+    background: white;
+    grid-area: split1;
+    /* grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 2;
+    grid-column-end: 3; */
+}
+
+.main {
+    padding: 10px;
+    background: gray;
+    color: white;
+    grid-area: main;
+    /* grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 3;
+    grid-column-end: 4; */
+}
+
+.split2 {
+    cursor: ew-resize;
+    background: white;
+    grid-area: split2;
+    /* grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 2;
+    grid-column-end: 3; */
+}
+
+.right {
+    padding: 10px;
+    background: #32373a;
+    color: white;
+    grid-area: right;
+    /* grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 2; */
+}
+
+.footer {
+    padding: 10px;
+    background: #3D474C;
+    color: white;
+    grid-area: footer;
+    /* grid-row-start: 5;
+    grid-row-end: 6;
+    grid-column-start: 1;
+    grid-column-end: 4; */
+}
+
+    </style>
+
+    <script>
+        //https://github.com/nathancahill/split
+window.addEventListener('DOMContentLoaded', (event) => {
+    Split({
+        columnGutters: [
+            {track: 1,element: document.querySelector('.split1')},
+            {track: 3,element: document.querySelector('.split2')}
+        ]
+    })
+});
+   </script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">Header</div>
+        <div class="left">
+            Sidebar xvzxzcxbxnx cvnnvncn x√ncncxg hncxncxn cndgnd ndyhgdf
+            <button>hello</button>
+            <span style="padding:20px;">text</span>
+            <p></p>
+        </div>
+        <div class="split1"></div>
+        <div class="main">Main</div>
+        <div class="split2"></div>
+        <div class="right">Right</div>
+        <div class="footer">Footer</div>
+    </div>
+</body>
+</html>

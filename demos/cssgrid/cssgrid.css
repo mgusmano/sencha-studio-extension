@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+}
+
+.container {
+    width: 100vw;  height: 100vh;
+  display: grid;
+  grid-template-columns: 350px auto 350px;
+  grid-template-rows:  50px auto 200px 100px 50px;
+  grid-template-areas: 
+    "header header header"
+    "left main right"
+    "left mainbottom right"
+    "bottom bottom bottom"
+    "footer footer footer";
+}
+
+.header {
+  grid-area: header;
+  background: lightgreen;
+}
+
+.left {
+  grid-area: left;
+  background: aqua;
+}
+.main {
+  grid-area: main;
+  background: beige;
+}
+
+.mainbottom {
+  grid-area: mainbottom;
+  background: lime;
+}
+
+.right {
+  grid-area: right;
+  background: lightcoral;
+
+}
+
+.bottom {
+  grid-area: bottom;
+  background: plum;
+}
+
+
+.footer {
+  grid-area: footer;
+  background: lightgreen;
+}
+
+
+
+/* .page {
+    display: grid;
+    grid-template-columns: 20vw auto;
+}
+
+.sidebar {
+    position: fixed;
+    width: 20vw;
+}
+
+.main {
+    grid-column-start: 2;
+} */

@@ -1,0 +1,26 @@
+:root {
+    --z-font-family: Arial, Helvetica, sans-serif;
+    --z-panel-padding: rgb(33,33,33);
+    --z-panel-padding2: rgb(50,50,50);
+    --vscode-tab-activeBackground: var(--z-panel-background);
+    --z-splitter-background2: #5a6a77;
+    --z-splitter-background: rgb(90,106,118);
+    --z-splitter-background3: rgb(90,90,90);
+    --z-tab-activeBackground: var(--z-splitter-background);
+    --z-panel-background: #35353b;
+    --z-panel-color: white;
+}
+
+*, *:before, *:after {box-sizing: inherit;}
+
+html, body {
+    display: flex;
+    font-family: var(--z-font-family);
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

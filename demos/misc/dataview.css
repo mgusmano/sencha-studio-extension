@@ -1,0 +1,19 @@
+#leftSide .x-dataview {
+    background-color: var(--vscode-panel-background);
+}
+
+#leftSide .x-listitem {
+    color: white;
+    background-color: #32373a;
+    border-width: 0px 0;
+    border-style: solid;
+    border-color: #32373a;;
+}
+
+#leftSide .x-listitem-inner-el {
+    padding: 0;
+}
+
+::placeholder {
+    color: white; 
+} 

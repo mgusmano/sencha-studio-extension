@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html manifest="">
+    <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
+    <title>tabs</title>
+
+<style>
+   
+   body {
+   font-family: Arial, Helvetica, sans-serif;
+    }
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.tabcontainer{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(80,80,80);
+    height: 100%;
+}
+
+.tabheader {
+    overflow: hidden;
+    border-bottom: 1px solid rgb(50, 50, 50);
+    padding: 5px 5px 0 5px;
+    background:rgb(80,80,80);
+}
+
+.tabcontent {
+  display: none;
+  flex: auto;
+  background: rgb(50, 50, 50);
+  color: white;
+  padding: 6px 12px;
+  border: 0px solid #ccc;
+  border-top: none;
+}
+
+/* rgb(70,74,77) */
+
+.tabheader button {
+    background-color: inherit;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 8px 12px;
+    transition: 0.3s;
+    font-size: 12px;
+  }
+  
+.tabheader button:hover {
+    background-color: #ddd;
+    color: black;
+    border-radius: 4px 4px 0 0;
+}
+  
+.tabheader button.active {
+    background: linear-gradient(#323639, #32373a);
+    border-radius: 4px 4px 0 0;
+    border-left-color: #24282b;
+    border-right-color: #24282b;
+    color: #fff;
+    font-weight: normal;
+}
+
+
+
+</style>
+
+<script>
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+window.addEventListener('DOMContentLoaded', (event) => {
+});
+</script>
+
+</head>
+<body>
+    <div class="container" style="width:500px;height:400px;background:yellow;">
+        <div class="tabcontainer">
+            <div class="tabheader">
+                <button class="tablinks" onclick="openCity(event, 'London')">London</button>
+                <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+                <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+            </div>
+            <div id="London" class="tabcontent">
+                <div>London</div>
+                <div>London is the capital city of England.</div>
+            </div>
+            <div id="Paris" class="tabcontent">
+                <h3>Paris</h3>
+                <p>Paris is the capital of France.</p> 
+            </div>
+            <div id="Tokyo" class="tabcontent">
+                <h3>Tokyo</h3>
+                <p>Tokyo is the capital of Japan.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

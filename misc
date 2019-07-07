@@ -1,0 +1,47 @@
+https://code.visualstudio.com/api/extension-guides/webview
+
+https://github.com/Microsoft/vscode/blob/31f86f72bd027dc90347bf7459111550604582b4/extensions/theme-monokai/themes/monokai-color-theme.json
+
+https://code.visualstudio.com/api/references/theme-color
+
+https://github.com/viatsko/awesome-vscode
+
+https://vscode.readthedocs.io/en/latest/
+
+https://medium.com/@caludio/how-to-write-a-visual-studio-code-color-theme-from-scratch-7ccb7e5da2aa
+
+        "onView:explorer",
+        "onView:nodeDependencies",
+        "onCommand:extension.toggleTerminal",
+        "onView:fileExplorer"
+
+
+                    {
+                "title": "Shortcut Menu Bar configuration",
+                "properties": {
+                    "Toggle terminal": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "show icon for toggle terminal"
+                    }
+                }
+            },
+
+                        // {
+            //     "command": "extension.toggleTerminal",
+            //     "title": "Toggle Terminal",
+            //     "category": "menubar",
+            //     "icon": {
+            //         "light": "images/terminal_light.svg",
+            //         "dark": "images/terminal.svg"
+            //     }
+            // },
+            // {
+            //     "command": "extension.showDesigner2",
+            //     "title": "Show Ext JS Designer",
+            //     "category": "menubar",
+            //     "icon": {
+            //         "light": "images/triangle-right_light.svg",
+            //         "dark": "images/EXT.svg"
+            //     }
+            // }

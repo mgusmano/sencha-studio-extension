@@ -1,0 +1,31 @@
+export default function left() {
+    var html = `
+    <z-panel width="300px" flexdirection="column" class="left">
+    <z-tabs style="flex:2">
+        <z-tabpanel tabname="drag">
+            <div style="margin-bottom:10px;">xtype: <span id="xtype" ></span></div>
+            <ol>
+                <li id="grid" draggable="true" ondragstart="left.dragstart(event)">Grid</li>
+                <li id="column" draggable="true" ondragstart="left.dragstart(event)">Column</li>
+                <li id="button" draggable="true" ondragstart="left.dragstart(event)">Button</li>
+            </ol>
+        </z-tabpanel>
+        <z-tabpanel tabname="drop">
+            <div style="margin-bottom:10px;">xtype: <span id="xtype" ></span></div>
+            <ol>
+                <li id="grid" draggable="true" ondragstart="left.dragstart(event)">Grid2</li>
+                <li id="column" draggable="true" ondragstart="left.dragstart(event)">Column</li>
+                <li id="button" draggable="true" ondragstart="left.dragstart(event)">Button</li>
+            </ol>
+        </z-tabpanel>
+    </z-tabs>
+    <z-splitter></z-splitter>
+    <z-tabs style="flex:1">
+        <z-tabpanel tabname="viewconfigs">
+            <z-props id="viewconfigs"></z-props>
+        </z-tabpanel>
+    </z-tabs>
+</z-panel>
+    `
+    return html;
+}

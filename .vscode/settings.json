@@ -1,0 +1,30 @@
+{
+
+    "editor.formatOnSave": true,
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+
+    "files.exclude": {
+        "out": true // set this to true to hide the "out" folder with the compiled JS files
+    },
+    "search.exclude": {
+        "**/webOrig": true,
+        "**/out": true,
+        "**/test": true,
+        "**/web/z/other": true,
+        "**/src/misc": true,
+        "**/web/misc": true,
+        "**/main.js": true,
+        "**/demos": true
+    },
+    "editor.autoClosingQuotes": "always",
+    "workbench.colorCustomizations": {
+        "menubar.selectionForeground":"#4c00ff",
+        "tab.activeBackground": "#1e3285",
+        "titleBar.activeBackground": "#1e3285",
+        "titleBar.activeForeground": "#FFFFFF",
+        "titleBar.inactiveBackground": "#811519",
+        "titleBar.inactiveForeground": "#cccccc"
+    }
+
+}

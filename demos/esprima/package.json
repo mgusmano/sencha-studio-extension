@@ -1,0 +1,16 @@
+{
+    "name": "esprima",
+    "displayName": "esprima",
+    "description": "esprima",
+    "version": "0.0.1",
+    "publisher": "mjg",
+    "repository": "https://github.com",
+    "main": "./index.js",
+    "scripts": {
+        "vscode:prepublish": "npm run compile"
+    },
+    "devDependencies": {
+        "esprima": "~4.0.1",
+        "escodegen": "~1.11.1"
+    }
+}

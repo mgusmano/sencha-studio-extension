@@ -1,0 +1,180 @@
+{
+    "name": "sencha-studio-extension",
+    "displayName": "sencha-studio-extension",
+    "description": "sencha-studio-extension",
+    "version": "0.0.1",
+    "publisher": "extjs-studio",
+    "repository": "https://github.com",
+    "license": "MIT",
+    "engines": {
+        "vscode": "^1.35.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "workspaceContains:**/*View.js"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "snippets": [
+            {
+                "language": "javascript",
+                "path": "./snippets.json"
+            }
+        ],
+        "commands": [
+            {
+                "command": "extension.reverseWord",
+                "title": "Reverse Word"
+            },
+            {
+                "command": "extension.addConsoleLog",
+                "title": "Add Console Log"
+            },
+            {
+                "command": "extension.showVisibleTextEditors",
+                "title": "showVisibleTextEditors"
+            },
+            {
+                "command": "extension.addDesigner",
+                "title": "Add Ext JS Designer"
+            },
+            {
+                "command": "extension.showDesigner",
+                "title": "Show Ext JS Designer",
+                "color": "red",
+                "category": "menubar"
+            },
+            {
+                "command": "extension.toggleTerminal",
+                "title": "Toggle Terminal",
+                "category": "menubar",
+                "icon": {
+                    "light": "images/terminal_light.svg",
+                    "dark": "images/terminal.svg"
+                }
+            }
+        ],
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "fileExplorer",
+                    "title": "Ext JS Designer",
+                    "icon": "media/dep.svg"
+                }
+            ]
+        },
+        "views": {
+            "fileExplorer": [
+                {
+                    "id": "fileExplorer.tree",
+                    "name": "File Explorer"
+                }
+            ]
+        },
+        "configuration": [
+            {
+                "title": "Ext JS Designer",
+                "properties": {
+                    "Ext JS Designer.buttonColor": {
+                        "type": "string",
+                        "enum": [
+                            "red",
+                            "green",
+                            "yellow",
+                            "blue",
+                            "white"
+                        ],
+                        "default": "green",
+                        "description": "Set Button Color",
+                        "scope": "window"
+                    },
+                    "Ext JS Designer.showDebuggerWindow": {
+                        "type": "string",
+                        "enum": [
+                            "yes",
+                            "no"
+                        ],
+                        "default": "yes",
+                        "markdownDescription": "### debugger window\nShow the **debugger** window",
+                        "scope": "window"
+                    },
+                    "Ext JS Designer.showOnWindowOpen": {
+                        "type": "string",
+                        "enum": [
+                            "explorer",
+                            "search",
+                            "scm",
+                            "debug",
+                            "extensions"
+                        ],
+                        "default": "explorer",
+                        "description": "This is the description for showOnWindowOpen",
+                        "scope": "window"
+                    },
+                    "Ext JS Designer.insertEmptyLastLine": {
+                        "type": "string",
+                        "default": "red",
+                        "description": "Resource configuration: Configure files using glob patterns to have an empty last line always",
+                        "scope": "window"
+                    }
+                }
+            }
+        ],
+        "menus": {
+            "commandPalette": [
+                {
+                    "when": "config.Toggle terminal",
+                    "command": "extension.showDesigner",
+                    "group": "navigation@2"
+                }
+            ],
+            "editor/title": [
+                {
+                    "when": "config.Toggle terminal",
+                    "command": "extension.toggleTerminal",
+                    "group": "navigation@2"
+                },
+                {
+                    "command": "extension.showDesigner",
+                    "group": "navigation@3"
+                }
+            ],
+            "view/title": [
+                {
+                    "command": "extension.showDesigner",
+                    "group": "navigation@3"
+                },
+                {
+                    "when": "view == nodeDependencies",
+                    "command": "extension.toggleTerminal",
+                    "group": "navigation"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "devDependencies": {
+        "vscode-express": " ^1.0.1",
+        "monaco-editor": " ^0.17.1",
+        "moment": "^2.24.0",
+        "split-grid": "^1.0.9",
+        "esprima": "~4.0.1",
+        "escodegen": "~1.11.1",
+        "@babel/parser": "^7.4.5",
+        "@babel/types": "^7.4.4",
+        "@babel/traverse": "^7.4.5",
+        "@babel/generator": "^7.4.4",
+        "parse-function-string": "^0.1.1",
+        "@types/node": "^12.0.7",
+        "tslint": "^5.17.0",
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.34"
+    }
+}

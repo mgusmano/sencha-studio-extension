@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
+
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="scripts/ext.js"></script>
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="scripts/index.js"></script>
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="scripts/getInitialConfigs.js"></script>
+
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="scripts/split-grid.js"></script>
+
+
+
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="scripts/header.js"></script>
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="scripts/left.js"></script>
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="scripts/right.js"></script>
+
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="scripts/app.js"></script>
+
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="scripts/focusbox.js"></script>
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="scripts/dialog.js"></script>
+
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="scripts/events.js"></script>
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="scripts/draganddrop.js"></script>
+
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="lib/ext-container.component.js"></script>
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="lib/ext-component.component.js"></script>
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="lib/ext-widget.component.js"></script>
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="lib/ext-grid.component.js"></script>
+
+
+
+
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="scripts/getSuper.js"></script>
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="scripts/getDocs.js"></script>
+
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="scripts/mouseevents.js"></script>
+
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="z/z-button.js"></script>
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="z/z-props.js"></script>
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="z/z-tabs.js"></script>
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="z/z-splitter.js"></script>
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="z/z-dataview.js"></script>
+
+<link   nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH" href="css/body.css" rel="stylesheet">
+<link   nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH" href="css/button.css" rel="stylesheet">
+<link   nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH" href="css/highlight.css" rel="stylesheet">
+<link   nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH" href="css/dialog.css" rel="stylesheet">
+<link   nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH" href="css/focusbox.css" rel="stylesheet">
+<link   nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH" href="css/dialog.css" rel="stylesheet">
+<link   nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH" href="css/tooltip.css" rel="stylesheet">
+<link   nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH" href="css/scrollbar.css" rel="stylesheet">
+<link   nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH" href="css/draganddrop.css" rel="stylesheet">
+
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="personnel/PersonnelViewController.js"></script>
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="personnel/PersonnelViewModel.js"></script>
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="personnel/PersonnelViewStore.js"></script>
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"  src="personnel/PersonnelView.js"></script>
+
+</head>
+
+
+<script>
+    Ext.application({
+        name: 'EXTApp',
+        launch: function () {
+            Ext.Viewport.add([{xtype: 'personnelview'}])
+        }
+    });
+</script>
+
+<body>
+    <div id="container" class="container">
+        <div class="header">
+            <div>this view: </div>
+            <div style="position: absolute;top:5px;right:10px;">
+                <z-button text="mjg"></z-button>
+                <button onclick="btnClick('0', 'All')"  class="btn"><i id="btnI0" class="fa fa-eye-slash"></i><span id="btn0"> All Off</span></button>
+        
+                <button onclick="btnClick('1', 'Left')"  class="btn"><i id="btnI1" class="fa fa-eye-slash"></i><span id="btn1"> Left Off</span></button>
+                <button onclick="btnClick('2', 'Right')" class="btn"><i id="btnI2" class="fa fa-eye-slash"></i><span id="btn2"> Right On</span></button>
+                <button onclick="doTerminal()" class="btn"><i class="fa fa-bars"></i> Terminal</button>
+            </div>
+
+        </div>
+        <div id="left" class="left">
+
+            <z-tabs style="flex:2">
+
+                <z-tabpanel tabname="view configs">
+                    <z-props id="viewconfigs"></z-props>
+                </z-tabpanel>
+                <z-tabpanel tabname="ultimate">
+                    <z-props id="ultimateconfigs"></z-props>
+                </z-tabpanel>
+                <z-tabpanel tabname="initial">
+                    <z-props id="initialconfigs"></z-props>
+                </z-tabpanel>
+            
+                <z-tabpanel tabname="classes">
+                    <z-props id="classes"></z-props>
+                </z-tabpanel>
+            
+                <z-tabpanel tabname="configs">
+                <z-props id="configs"></z-props>
+            </z-tabpanel>
+            
+            </z-tabs>
+            
+            <z-splitter></z-splitter>
+            
+            <z-tabs style="flex:1">
+                <z-tabpanel tabname="drag">
+                    <div style="margin-bottom:10px;">xtype: <span id="xtype" ></span></div>
+                    <ol>
+                        <li id="grid" draggable="true" ondragstart="left.dragstart(event)">Grid</li>
+                        <li id="column" draggable="true" ondragstart="left.dragstart(event)">Column</li>
+                        <li id="button" draggable="true" ondragstart="left.dragstart(event)">Button</li>
+                    </ol>
+                </z-tabpanel>
+            </z-tabs>
+            
+        </div>
+        <div id="split1" class="split1"></div>
+        <div id="content" class="content"></div>
+        <div id="split2" class="split2"></div>
+        <div class="right">
+            <z-tabs style="flex:2">
+                <z-tabpanel tabname="allconfigs">
+                    <z-props id="allconfigs"></z-props>
+                </z-tabpanel>
+            </z-tabs>
+        
+            <z-splitter></z-splitter>
+        
+            <z-tabs style="flex:1">
+                <z-tabpanel tabname="superclasses">
+                    <z-props id="supers"></z-props>
+                </z-tabpanel>
+            </z-tabs>
+        </div>
+        <div class="footer">
+
+        </div>
+    </div>
+    <div id="focusbox" style="z-index: 20000; position: fixed; left: -40px; top: -40px; width: 1px; height: 1px;">
+        <div id="buttons" style="background: #025B80; border: 0px solid black; left: 0px; top: 0px; width: 50px; height: 20px;">
+            <button onclick="focusbtnClick('1', 'Left')" class="focusbtn"><i id="btnI1" class="fa fa-eye-slash"></i><span></span></button>
+        </div>
+        <div id="infobox" style="box-shadow: 0 0 10px;background: blue; opacity: 0.2; border: 0px solid black; height: 41.9792px;"></div>
+    </div>   
+
+
+    <div class="dialogs">
+        <dialog id="demo-modal">
+            <h3 class="modal-header">
+                <span>dropped...</span>
+            </h3>
+            <div class="modal-body">
+                <div>drag component: <span id="m-xtype"></span></div>
+        
+                <div>drop target: <span id="m-target"></span></div>
+                <div>target class name: <span id="m-classname"></span></div>
+        
+            </div>
+            <footer class="modal-footer">
+                <button id="like-it" type="button">Close</button>
+            </footer>
+            <button id="close" class="close" type="button">
+                <span>&times;</span>
+            </button>
+        </dialog>
+        
+        <dialog id="focus-modal">
+            <h3 class="focus-header">
+                <span>dropped...</span>
+            </h3>
+            <div class="focus-body">
+                <div>drag component: <span id="focus-xtype"></span></div>
+        
+                <div>drop target: <span id="focus-target"></span></div>
+                <div>target class name: <span id="focus-classname"></span></div>
+        
+            </div>
+            <footer class="focus-footer">
+                <button id="like-it" type="button">Close</button>
+            </footer>
+            <button id="close" class="close" type="button">
+                <span>&times;</span>
+            </button>
+        </dialog>
+    </div>
+</body>
+</html>

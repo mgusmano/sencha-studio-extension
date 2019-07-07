@@ -1,0 +1,44 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<style>
+body {padding:0;}
+</style>
+
+<script type="module">
+
+window.addEventListener('myCustomEvent', handleEvent)
+function handleEvent(e) {
+  console.log(e.detail) // outputs: {foo: 'bar'}
+}
+
+document.addEventListener("DOMContentLoaded", function(event){
+    document.documentElement.style.width = "100%";
+    document.documentElement.style.height = "100%";
+    document.getElementById("iframe1").style.width = "100%";
+    document.getElementById("iframe1").style.height = "100%";
+    var doc = document.getElementById('iframe1').contentDocument;
+    console.log(document.getElementById('iframe1'))
+    doc.open();
+    var a = `
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH" src="vscode-resource:/Volumes/BOOTCAMP/sencha-studio-extension/web/main.js" type='text/javascript' />
+
+<body>hi there</body>
+</html>
+`
+    doc.write(a);
+    doc.close();
+});
+
+</script>
+
+</html>
+<body>
+<iframe  id="iframe1" class="resp-iframe"></iframe>
+</body>

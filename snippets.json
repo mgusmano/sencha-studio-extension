@@ -1,0 +1,17 @@
+{
+	"Print to console": {
+		"prefix": "extd",
+		"body": [
+            "Ext.define('z.view.$1.$1View', {",
+            "    extend: 'Ext.Panel',",
+            "    xtype: '$1view',",
+            "    cls: '$1view',",
+            "   title: '$1'",
+            "});"
+
+
+
+		],
+		"description": "Ext.define"
+	}
+}

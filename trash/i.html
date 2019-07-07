@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
+    <script src="z/z.js"></script>
+    <script src="scripts/ext.js"></script>
+    <script src="zz/index.js"></script>
+    <!-- <script src="scripts/getSuper.js"></script> -->
+    <!-- <script src="scripts/getDocs.js"></script> -->
+    <!-- <script src="scripts/getInitialConfigs.js"></script> -->
+
+    <!-- <link href="fontawesome/css/all.min.css" rel="stylesheet">  -->
+    <!-- <script src="zz/csi.js"></script> -->
+    <!-- <link  href="z/z-style.css" rel="stylesheet"> -->
+
+    <!-- <script src="z/z-button.js"></script>
+    <script src="z/z-props.js"></script>
+    <script src="z/z-tabs.js"></script>
+    <script src="z/z-splitter.js"></script>
+    <script src="z/z-panel.js"></script>
+    <script src="z/z-dataview.js"></script> -->
+    <!-- <script src="lib/ext-grid.component.js"></script> -->
+    <!-- 
+    <script src="lib/ext-list.component.js"></script>
+    <script src="lib/ext-componentdataview.component.js"></script>
+    <script src="lib/ext-container.component.js"></script>
+    <script src="lib/ext-component.component.js"></script>
+    <script src="lib/ext-widget.component.js"></script> -->
+
+
+
+
+    <script src="personnel/PersonnelViewModel.js"></script>
+    <script src="personnel/PersonnelViewStore.js"></script>
+    <script src="personnel/PersonnelViewController.js"></script>
+    <script src="personnel/PersonnelView.js"></script>
+
+    <script>
+        function btnClick() {
+            console.log('click')
+            var pe = document.getElementById('allconfigs');
+            var a = [
+                {"className": "text", "field": "element", "value": "title1", "hint": "hint"},
+                {"className": "text", "field": "element", "value": "title2", "hint": "hint"},
+                {"className": "text", "field": "element", "value": "title3", "hint": "hint"}
+            ]
+            allconfigs.data = a;
+        }
+    </script>
+
+</head>
+<body>
+    <z-panel flexdirection="column">
+        <z-section file="zz/header.html"></z-section>
+        <z-panel flexdirection="row">
+            <z-section file="zz/left.html"></z-section>
+            <z-splitter></z-splitter>
+            <z-panel id="content" padding="15px" background="lightgray"></z-panel>
+            <z-splitter></z-splitter>
+            <z-section file="zz/right.html"></z-section>
+        </z-panel>
+        <z-splitter></z-splitter>
+        <z-section file="zz/details.html"></z-section>
+        <z-section file="zz/footer.html"></z-section>
+    </z-panel>
+</body>
+</html>

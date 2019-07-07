@@ -1,0 +1,135 @@
+
+
+    // getTheHTML2() {
+    //     this._filePath = vscode.window.activeTextEditor.document.fileName
+    //     this._fileName = this._filePath.substr(this._filePath.lastIndexOf("/") + 1);
+
+    //     var html = `
+    //     <html>
+    //     <body style="background:blue;padding:0;">
+    //     ${this._filePath}
+    //     </body>
+    //     </html>
+    //     `
+    //     return html;
+    // }
+
+
+
+
+    // changePanelContent() {
+    //     Logger.log('in changePanelContent')
+    //     if (this._panel == undefined) {
+    //         this.initializeThePanel();
+    //     }
+    //     this._panel.webview.html = this.getTheHTML();
+    // }
+
+    // getTheHTML() {
+    //     Logger.log('getTheHTML')
+    //     this._filePath = vscode.window.activeTextEditor.document.fileName
+    //     this._fileName = this._filePath.substr(this._filePath.lastIndexOf("/") + 1);
+    //     var viewStart = this._filePath.indexOf('View.js');
+    //     if (viewStart != -1) {
+    //         console.log('is EXT view')
+    //         try {
+    //             this._panel.webview.postMessage({ command: 'blur' });
+
+    //             var lastSlash = this._filePath.lastIndexOf("/");
+    //             var folder = this._filePath.substring(0, lastSlash+1);
+    //             var name = this._filePath.substring(lastSlash+1, viewStart);
+    //             var xtype = name.toLowerCase() + 'view'
+
+    //             this._htmlprovider.setAppJS(xtype, this._workspaceName, this._extensionPath, this._filePath);
+
+    //             //const view = vscode.window.activeTextEditor.document.getText();
+    //             var view = '';
+    //             try {view = fs.readFileSync(folder + name + 'View.js').toString()}
+    //             catch(e) { view = '' }
+
+    //             // var viewcontroller = '';
+    //             // try {viewcontroller = fs.readFileSync(folder + name + 'ViewController.js').toString()}
+    //             // catch(e) { viewcontroller = '' }
+    
+    //             // var viewmodel = '';
+    //             // try {viewmodel = fs.readFileSync(folder + name + 'ViewModel.js').toString()}
+    //             // catch(e) { viewmodel = '' }
+    
+    //             // var viewstore = '';
+    //             // try {viewstore = fs.readFileSync(folder + name + 'ViewStore.js').toString()}
+    //             // catch(e) { viewstore = '' }
+    
+    //             var html = this._htmlprovider.getHtmlEXT(view, this._filePath, this._fileName);
+    //             return html;
+    //         }
+    //         catch(e) {
+    //             console.log(e)
+    //             return ''
+    //         }
+    //     }
+    //     else {
+    //         this._htmlprovider.setAppJS('container', this._workspaceName, this._extensionPath, this._filePath);
+    //     }
+    // }
+
+
+
+
+    // previewAndCloseSrcDoc = async (document: vscode.TextDocument): Promise<void> => {
+    //     //this._outputChannel.appendLine(document.languageId);
+    //     if (document.languageId === "markdownx") {
+    //       await vscode.commands.executeCommand("workbench.action.closeActiveEditor");
+    //     //   if (!revealIfAlreadyOpened(document.uri)) {
+    //     //     registerPanel(createPreview(context, document.uri, provider));
+    //     //   }
+    //     }
+    // }
+
+            //console.log(vscode.window.activeTextEditor.document.fileName)
+
+//      this.changePanelContent()
+        //Logger.log(vscode.workspace.textDocuments.length + ' open document(s)')
+        // if (vscode.workspace.textDocuments.length > 1) {
+        //     this.changePanelContent()
+        // }
+
+        // Logger.showInformationMessage('showInformationMessage');
+        // Logger.showErrorMessage('showErrorMessage');
+
+        //mjgcommands
+        //https://code.visualstudio.com/api/references/commands
+        //https://vscode.readthedocs.io/en/latest/getstarted/keybindings/
+
+        // const url = 'https://www.sencha.com';
+        // vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(url));
+
+
+                // let runit = vscode.commands.registerCommand('extension.runIt',() => {
+        //     console.log('runit');
+        // });
+        // const onDidOpenTextDocument = vscode.workspace.onDidOpenTextDocument((document: vscode.TextDocument) => {
+        //     //this.previewAndCloseSrcDoc(document);
+        //     Logger.log('onDidOpenTextDocument:' + document.fileName);
+        // });
+        // const onDidCloseTextDocument = vscode.workspace.onDidCloseTextDocument((document: vscode.TextDocument) => {
+        //     //this.previewAndCloseSrcDoc(document);
+        //     Logger.log('onDidCloseTextDocument:' + document.fileName);
+        //     Logger.log(vscode.workspace.textDocuments.length + ' open document(s)')
+        // });
+        // let onDidChangeActiveTextEditor = vscode.window.onDidChangeActiveTextEditor(e => {
+        //     Logger.log('onDidChangeActiveTextEditor:' + e.document.fileName);
+        //     var prefix = e.document.fileName.substring(0, 9);
+        //     if (prefix != 'extension') {
+        //         this.changePanelContent()
+        //     }
+        //     else {
+        //         Logger.log('did not change panel content')
+        //         //console.log(vscode.workspace.textDocuments)
+        //     }
+        //     // if (vscode.window.activeTextEditor != undefined) {
+                 
+        //     // }
+        // });
+        // let toggleTerminal = vscode.commands.registerCommand("extension.toggleTerminal", () => {
+        //     vscode.commands.executeCommand("workbench.action.terminal.toggleTerminal").then(function () {});
+        // });

@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
+    <link rel="stylesheet" type="text/css" href="./test.css">.
+
+
+    <script type="module">
+
+window.addEventListener('myCustomEvent', handleEvent)
+function handleEvent(e) {
+    console.log(e.detail) // outputs: {foo: 'bar'}
+}
+
+
+
+        document.addEventListener("DOMContentLoaded", function(event){
+            document.documentElement.style.width = "100%";
+            document.documentElement.style.height = "100%";
+//            document.getElementById("iframe1").style.width = "100%";
+//            document.getElementById("iframe1").style.height = "100%";
+
+//            document.getElementById("iframe1").src="vscode-resource:/Volumes/BOOTCAMP/sencha-studio-extension/web/page.html";
+
+//            document.getElementById("iframe1").src="http://www.sencha.com";
+            document.getElementById("iframe1").src="http://se.sencha.com";
+
+        });
+    </script>
+
+</head>
+
+<body style="display:block;height:100%;margin:0;">
+<div class="wholepage">
+    <div class="top">
+        top
+    </div>
+
+
+
+    <div class="sidenav">
+
+            <div class="search">
+                    <input type="search" required="" placeholder="Search components">
+                </div>
+
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#clients">Clients</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <div class="resp-container">
+            <iframe  id="iframe1" class="resp-iframe"></iframe>
+        </div>
+
+
+    <div class="rightside">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#clients">Clients</a>
+        <a href="#contact">Contact</a>
+    </div>
+</div>div>
+</body>
+
+
+</html>

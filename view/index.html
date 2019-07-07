@@ -1,0 +1,45 @@
+<script nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH"
+    src="/Volumes/BOOTCAMP/_aDesigner/sencha-studio-extension/view/myexpress.js"></script>
+<link nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH" rel="stylesheet" type="text/css"
+    href="/Volumes/BOOTCAMP/_aDesigner/sencha-studio-extension/view/css/myexpress.css">
+    <link nonce="5ucQm9Z6LQhehDMEZnySYON17arig2AH" rel="stylesheet" type="text/css"
+    href="/Volumes/BOOTCAMP/_aDesigner/sencha-studio-extension/view/css/dialog.css">
+
+
+<script>
+    function hello() {
+        command('extension.showDesigner', function () {
+            document.getElementById('log').innerHTML = "showDesigner is done"
+        });
+    }
+
+    function closeTab() {
+        command('extension.MyExpressClose', 'index.html');
+    }
+</script>
+
+<div id="demo-modal" style="padding:10px;background:gray;">
+    <h3 class="modal-header">
+        <span>dropped...</span>
+    </h3>
+    <div class="modal-body">
+        <div>drag component: <span id="m-xtype"></span></div>
+
+        <div>drop target: <span id="m-target"></span></div>
+        <div>target class name: <span id="m-classname"></span></div>
+
+        <button onclick="hello()">Ext JS Designer</button>
+        <button onclick="closeTab()">Close Tab</button>
+        <div id="log"></div>
+
+    </div>
+    <footer class="modal-footer">
+        <button id="like-it" type="button">Close</button>
+    </footer>
+    <button id="close" class="close" type="button">
+        <span>&times;</span>
+    </button>
+</div>
+
+
+

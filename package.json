@@ -69,7 +69,15 @@
             "fileExplorer": [
                 {
                     "id": "fileExplorer.tree",
-                    "name": "File Explorer"
+                    "name": "z (Ext JS)"
+                },
+                {
+                    "id": "justviews.tree",
+                    "name": "Just Views"
+                },
+                {
+                    "id": "commands.tree",
+                    "name": "Commands"
                 }
             ]
         },
@@ -135,11 +143,8 @@
                     "when": "config.Toggle terminal",
                     "command": "extension.toggleTerminal",
                     "group": "navigation@2"
-                },
-                {
-                    "command": "extension.showDesigner",
-                    "group": "navigation@3"
                 }
+
             ],
             "view/title": [
                 {

@@ -45,3 +45,9 @@ https://medium.com/@caludio/how-to-write-a-visual-studio-code-color-theme-from-s
             //         "dark": "images/EXT.svg"
             //     }
             // }
+
+
+                          // {
+                //     "command": "extension.showDesigner",
+                //     "group": "navigation@3"
+                // }  

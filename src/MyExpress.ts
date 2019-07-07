@@ -11,10 +11,12 @@ export interface MyExpressCommandResponsePayload {
 
 export class MyExpress {
   static webviewPanelList: {[uri: string]: vscode.WebviewPanel} = {};
+  context: any;
   private _webRootAbsolutePath: string;
 
   constructor(context: vscode.ExtensionContext, webRootPath: string) {
     this._webRootAbsolutePath = path.join(context.extensionPath, webRootPath);
+    this.context = context;
   }
 
   /**
@@ -33,7 +35,7 @@ export class MyExpress {
 
     filePath = path.join(this._webRootAbsolutePath, filePath);
     const context =
-        new MyExpressPanelContext(filePath, title, viewColumn, options);
+        new MyExpressPanelContext(filePath, this.context, title, viewColumn, options);
     return context.panel;
   }
 
@@ -48,13 +50,14 @@ export class MyExpress {
 
 export class MyExpressPanelContext {
     private filePath: string;
+    private context: any;
     private title: string|undefined;
     private viewColumn: vscode.ViewColumn;
     private options: vscode.WebviewOptions;
     panel: vscode.WebviewPanel;
 
     constructor(
-        filePath: string, title?: string, viewColumn?: vscode.ViewColumn,
+        filePath: string, context: any, title?: string, viewColumn?: vscode.ViewColumn,
         options?: vscode.WebviewPanelOptions&vscode.WebviewOptions) {
             console.log(filePath);
     const _location: {href: string, search?: string, hash?: string} = {href: filePath};
@@ -70,6 +73,7 @@ export class MyExpressPanelContext {
       _location.search = '?' + _search;
     }
     this.filePath = filePath;
+    this.context = context;
     this.title = title || filePath;
     this.viewColumn = viewColumn || vscode.ViewColumn.Two;
     this.options = options || {};
@@ -100,8 +104,14 @@ export class MyExpressPanelContext {
     }
 
     if (!MyExpress.webviewPanelList[this.filePath]) {
-      this.panel = vscode.window.createWebviewPanel(
-          'MyExpress', this.title, this.viewColumn, this.options);
+      this.panel = vscode.window.createWebviewPanel('MyExpress', this.title, this.viewColumn, this.options);
+          this.panel.onDidDispose(() => {
+            this.panel = undefined;
+            console.log('delete webview')
+        }, null, this.context.subscriptions);
+
+
+
           console.log(html)
       this.panel.webview.html = html;
       this.panel.webview.onDidReceiveMessage(async message => {

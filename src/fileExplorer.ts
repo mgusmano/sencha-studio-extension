@@ -150,7 +150,6 @@ interface Entry {
 }
 
 //#endregion
-
 export class FileSystemProvider implements vscode.TreeDataProvider<Entry>, vscode.FileSystemProvider {
 
     private _onDidChangeFile: vscode.EventEmitter<vscode.FileChangeEvent[]>;

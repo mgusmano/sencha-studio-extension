@@ -1,4 +1,4 @@
-# Hello World Sample
+# Sencha Studio Sample
 
 This is a Hello World example that shows you how to use VS Code API.
 

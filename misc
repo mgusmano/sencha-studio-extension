@@ -51,3 +51,39 @@ https://medium.com/@caludio/how-to-write-a-visual-studio-code-color-theme-from-s
                 //     "command": "extension.showDesigner",
                 //     "group": "navigation@3"
                 // }  
+
+
+
+        "commands": [
+            {
+                "command": "extension.reverseWord",
+                "title": "Reverse Word"
+            },
+            {
+                "command": "extension.addConsoleLog",
+                "title": "Add Console Log"
+            },
+            {
+                "command": "extension.showVisibleTextEditors",
+                "title": "showVisibleTextEditors"
+            },
+            {
+                "command": "extension.addDesigner",
+                "title": "Add Ext JS Designer"
+            },
+            {
+                "command": "extension.showDesigner",
+                "title": "Show Ext JS Designer",
+                "color": "red",
+                "category": "menubar"
+            },
+            {
+                "command": "extension.toggleTerminal",
+                "title": "Toggle Terminal",
+                "category": "menubar",
+                "icon": {
+                    "light": "images/terminal_light.svg",
+                    "dark": "images/terminal.svg"
+                }
+            }
+        ],

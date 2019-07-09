@@ -25,35 +25,10 @@
         ],
         "commands": [
             {
-                "command": "extension.reverseWord",
-                "title": "Reverse Word"
-            },
-            {
-                "command": "extension.addConsoleLog",
-                "title": "Add Console Log"
-            },
-            {
-                "command": "extension.showVisibleTextEditors",
-                "title": "showVisibleTextEditors"
-            },
-            {
-                "command": "extension.addDesigner",
-                "title": "Add Ext JS Designer"
-            },
-            {
                 "command": "extension.showDesigner",
                 "title": "Show Ext JS Designer",
                 "color": "red",
                 "category": "menubar"
-            },
-            {
-                "command": "extension.toggleTerminal",
-                "title": "Toggle Terminal",
-                "category": "menubar",
-                "icon": {
-                    "light": "images/terminal_light.svg",
-                    "dark": "images/terminal.svg"
-                }
             }
         ],
         "viewsContainers": {
@@ -62,22 +37,37 @@
                     "id": "fileExplorer",
                     "title": "Ext JS Designer",
                     "icon": "media/dep.svg"
+                },
+                {
+                    "id": "vscCommands",
+                    "title": "Commander",
+                    "icon": "media/switch.svg"
                 }
             ]
         },
         "views": {
             "fileExplorer": [
                 {
+                    "id": "toolbarView",
+                    "name": "Quick Actions"
+                },
+                {
                     "id": "fileExplorer.tree",
                     "name": "z (Ext JS)"
                 },
                 {
-                    "id": "justviews.tree",
+                    "id": "justViews",
                     "name": "Just Views"
+                }
+            ],
+            "vscCommands": [
+                {
+                    "id": "commandView",
+                    "name": "commands"
                 },
                 {
-                    "id": "commands.tree",
-                    "name": "Commands"
+                    "id": "toolbarView",
+                    "name": "toolbar"
                 }
             ]
         },
@@ -141,18 +131,18 @@
             "editor/title": [
                 {
                     "when": "config.Toggle terminal",
-                    "command": "extension.toggleTerminal",
+                    "command": "extension.showDesigner",
                     "group": "navigation@2"
                 }
             ],
-            "view/title": [
+            "view/titlex": [
                 {
                     "command": "extension.showDesigner",
                     "group": "navigation@3"
                 },
                 {
                     "when": "view == nodeDependencies",
-                    "command": "extension.toggleTerminal",
+                    "command": "extension.showDesigner",
                     "group": "navigation"
                 }
             ]

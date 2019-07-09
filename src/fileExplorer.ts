@@ -264,9 +264,12 @@ export class FileSystemProvider implements vscode.TreeDataProvider<Entry>, vscod
     // tree data provider
 
     async getChildren(element?: Entry): Promise<Entry[]> {
+        //console.log('getChildren')
         if (element) {
             const children = await this.readDirectory(element.uri);
-            return children.map(([name, type]) => ({ uri: vscode.Uri.file(path.join(element.uri.fsPath, name)), type }));
+            var c = children.map(([name, type]) => ({ uri: vscode.Uri.file(path.join(element.uri.fsPath, name)), type }));
+//console.log(c)
+            return c;
         }
 
         const workspaceFolder = vscode.workspace.workspaceFolders.filter(folder => folder.uri.scheme === 'file')[0];
@@ -278,7 +281,9 @@ export class FileSystemProvider implements vscode.TreeDataProvider<Entry>, vscod
                 }
                 return a[1] === vscode.FileType.Directory ? -1 : 1;
             })
-            return children.map(([name, type]) => ({ uri: vscode.Uri.file(path.join(workspaceFolder.uri.fsPath, name)), type }));
+            var c = children.map(([name, type]) => ({ uri: vscode.Uri.file(path.join(workspaceFolder.uri.fsPath, name)), type }));
+//console.log(c[0])
+            return c;
         }
 
         return [];

@@ -2,10 +2,15 @@ import * as vscode from 'vscode';
 import { commands } from "vscode";
 import * as fs from 'fs';
 import MyCodeLensProvider from "./myCodeLensProvider";
+
 import { FileExplorer } from './fileExplorer';
+import { CommandView } from './commandView';
+import { ToolbarView } from './toolbarView';
+import { JustViews } from './justViews';
+
 import { StatusBarItem } from './types';
 import { Logger } from './logger';
-import { Tester } from './tester';
+//import { Tester } from './tester';
 import Eparser from './Eparser';
 import { MyExpress } from './MyExpress';
 
@@ -48,13 +53,12 @@ export default class ExtensionProvider {
 
         this.getConfiguration();
         this.registerMyExpress();
-        this.registerCommands();
+        this.registerVSCodeCommands();
         this.registerLogger();
         this.registerProviders();
         this.registerWatcher();
         this.registerVSCodeEventListeners();
-        this.registerViews();
-
+        this.registerSideViews();
         //this.registerStatusBarButtons();
         this.registerTextDecorations();
         //this.registerTests();
@@ -63,33 +67,21 @@ export default class ExtensionProvider {
     }
 
     async startIt() {
-    await vscode.commands.executeCommand("workbench.action.focusFirstEditorGroup")
-
-    //if(vscode.window.activeTextEditor.document)
-    //console.log('vscode.window.activeTextEditor')
-//    console.log(vscode.window.activeTextEditor)
-//    console.log(vscode.window.activeTextEditor.document.fileName)
-
-    if ( vscode.window.activeTextEditor != undefined) {
-        if (vscode.window.activeTextEditor.document.fileName != "tasks") {
-            await commands.executeCommand('workbench.action.newGroupLeft');
+        await vscode.commands.executeCommand("workbench.action.focusFirstEditorGroup")
+        if (vscode.window.activeTextEditor != undefined) {
+            if (vscode.window.activeTextEditor.document.fileName != "tasks") {
+                await commands.executeCommand('workbench.action.newGroupLeft');
+            }
         }
+        await vscode.commands.executeCommand('workbench.action.focusFirstEditorGroup');
+        await vscode.commands.executeCommand('extension.showDesigner');
+        await vscode.commands.executeCommand(`fileExplorer.tree.focus`);
+        //Logger.channel.show();
+        Logger.log('Ext JS Designer extension is now active!');
+        // Logger.showInformationMessage('showInformationMessage');
+        // Logger.showWarningMessage('showWarningMessage');
+        // Logger.showErrorMessage('showErrorMessage');
     }
-
-
-
-
-    await vscode.commands.executeCommand('workbench.action.focusFirstEditorGroup');
-    await vscode.commands.executeCommand('extension.showDesigner');
-
-    await vscode.commands.executeCommand(`fileExplorer.tree.focus`);
-    //Logger.channel.show();
-    Logger.log('Ext JS Designer extension is now active!');
-
-    // Logger.showInformationMessage('showInformationMessage');
-    // Logger.showWarningMessage('showWarningMessage');
-     // Logger.showErrorMessage('showErrorMessage');
-}
 
     getConfiguration() {
         const config = vscode.workspace.getConfiguration()
@@ -108,17 +100,24 @@ export default class ExtensionProvider {
         this.loadStatusBarButton2('MyExpress');
 
         this._context.subscriptions.push(commands.registerCommand('extension.sayHello', () => {
-                vscode.window.showInformationMessage('Hello World!');
-            })
+            vscode.window.showInformationMessage('Hello World!');
+        })
         );
 
         this._context.subscriptions.push(commands.registerCommand('extension.MyExpressClose', (path: string) => {
-                myexpress.close(path);
-            })
+            myexpress.close(path);
+        })
         );
     }
 
-    registerCommands() {
+    registerVSCodeCommands() {
+
+        this._dispose.push(commands.registerCommand("extension.showDesigner", () => {
+            this.initializeThePanel();
+            this.setAppJS();
+            this._panel.webview.html = this.getHtmlInitial();
+            this._panel.webview.postMessage({ command: 'blur' });
+        }));
 
         // this._dispose.push(
         //     commands.registerCommand("extension.showVisibleTextEditors", () => {
@@ -126,27 +125,10 @@ export default class ExtensionProvider {
         //     })
         // )
 
-
-        
-
-        this._dispose.push(commands.registerCommand("extension.focusFirstEditorGroup", (e) => {
-            vscode.commands.executeCommand("workbench.action.focusFirstEditorGroup");
-        }))
-        this.loadStatusBarButton2("focusFirstEditorGroup")
-
-
-
-        this._dispose.push(commands.registerCommand("extension.getcommands", () => {
-            commands.getCommands(false).then( e => {
-                console.log(e)
-            })
-        }));
-        this.loadStatusBarButton2("getcommands");
-
-        this._dispose.push(commands.registerCommand("extension.move", (e) => {
-            vscode.commands.executeCommand('moveActiveEditor', { to: '1', by: 'tab', value: 0 });
-        }))
-        this.loadStatusBarButton2("move")
+        // this._dispose.push(commands.registerCommand("extension.move", (e) => {
+        //     vscode.commands.executeCommand('moveActiveEditor', { to: '1', by: 'tab', value: 0 });
+        // }))
+        // this.loadStatusBarButton2("move")
 
         // this._dispose.push(commands.registerCommand("extension.test", (e) => {
         //     //this.updateDecorations(vscode.window.activeTextEditor)
@@ -157,76 +139,6 @@ export default class ExtensionProvider {
         // }));
         //this.loadStatusBarButton({ name: 'test', tooltip: 'test', vsCommand: 'extension.test' })
         //this.loadStatusBarButton2("test")
-
-        var me = this;
-        this._dispose.push(commands.registerCommand("extension.reveal", () => {
-            //this.updateDecorations(vscode.window.activeTextEditor)
-            //Tester.test1(this);
-            //Tester.testQuickInput(this)
-            //Tester.testProgress(this)
-            let v: vscode.TextEditor = vscode.window.activeTextEditor;
-            let vc = v.viewColumn
-            me._panel.reveal(vc, false)
-        }))
-        //this.loadStatusBarButton({ name: 'reveal', tooltip: 'reveal', vsCommand: 'extension.reveal' })
-        this.loadStatusBarButton2("reveal")
-
-
-        // this.registerCommandButton('getcommands', function () {
-        //     vscode.commands.getCommands(false).then((e) => {
-        //         console.log(e)
-        //     })
-        // });
-
-
-        this._dispose.push(commands.registerCommand("extension.npmStart", () => {
-                const terminal = vscode.window.createTerminal('npmStart')
-                terminal.show(true)
-                terminal.sendText('npm start')
-            })
-        )
-        this.loadStatusBarButton2("npmstart")
-
-        this._dispose.push(
-            vscode.commands.registerCommand("extension.showDesigner", () => {
-                this.initializeThePanel();
-                this.setAppJS();
-                this._panel.webview.html = this.getHtmlInitial();
-                this._panel.webview.postMessage(
-                    {
-                        command: 'blur'
-                    }
-                );
-                //let uri = Uri.file('/some/path/to/folder');
-                //vscode.commands.executeCommand('moveActiveEditor', { to: '1', by: 'tab', value: 0 });
-            })
-        )
-        this.loadStatusBarButton2("showDesigner")
-
-        this.registerCommandButton('selectAll', function () {
-            vscode.commands.executeCommand('selectAll');
-        });
-
-        this.registerCommandButton('extension.newGroupLeft', function () {
-            vscode.commands.executeCommand('workbench.action.newGroupLeft');
-        });
-
-        this.registerCommandButton('extension.focusFirstEditorGroup', function () {
-            vscode.commands.executeCommand('workbench.action.focusFirstEditorGroup');
-        });
-
-        this.registerCommandButton('extension.lastEditorInGroup', function () {
-            vscode.commands.executeCommand('workbench.action.lastEditorInGroup');
-        });
-
-        this._context.subscriptions.push(vscode.commands.registerCommand("extension.moveleft", () => {
-            vscode.commands.executeCommand('workbench.action.moveActiveEditorGroupLeft', { to: '1', by: 'tab', value: 0 }, (e) => {
-            })
-        }))
-        this.loadStatusBarButton2("extension.moveleft")
-
-//        this.loadStatusBarButton({ name: command, tooltip: command, vsCommand: 'extension.' + command })
-
 
 
 
@@ -316,8 +228,6 @@ export default class ExtensionProvider {
         });
     }
     registerVSCodeEventListeners() {
-
-
         vscode.window.onDidChangeActiveTextEditor(editor => {
             console.log('onDidChangeActiveTextEditor:')
             console.log(editor.document.fileName)
@@ -327,7 +237,6 @@ export default class ExtensionProvider {
             // editor.viewColumn = vscode.ViewColumn.Two
             // console.log('two')
             // console.log(editor.viewColumn)
-
 
             var filePath = editor.document.fileName;
             var viewStart = filePath.indexOf('View.js');
@@ -367,14 +276,7 @@ export default class ExtensionProvider {
             else {
                 //    vscode.window.showTextDocument(resource, vscode.ViewColumn.Two);
             }
-
-
-
-
-
-
         });
-
 
         vscode.window.onDidChangeVisibleTextEditors(Editors => {
             console.log('onDidChangeVisibleTextEditors:')
@@ -402,8 +304,6 @@ export default class ExtensionProvider {
             });
             console.log('*****')
 
-
-
             // Logger.log('open: ' + event.fileName)
 
             // //console.log('onDidOpenTextDocument ' + this._numTextFiles);
@@ -419,7 +319,6 @@ export default class ExtensionProvider {
             this._numTextFiles--;
             console.log('close: ' + vscode.workspace.textDocuments.length + " - " + event.fileName)
 
-
             // this._numTextFiles--;
             // //console.log('onDidCloseTextDocument ' + this._numTextFiles);
             // Logger.log(vscode.workspace.textDocuments.length);
@@ -430,19 +329,12 @@ export default class ExtensionProvider {
             console.log('save: ' + vscode.workspace.textDocuments.length + " - " + event.fileName)
         });
 
-
-
         vscode.window.onDidOpenTerminal(event => {
             console.log('onDidOpenTerminal')
         });
 
-
-
-
         // let v:vscode.TextEditor = vscode.window.activeTextEditor;
-
         // workbench.action.nextEditor
-
 
         // vscode.workspace.openTextDocument(filePath).then(doc => {
         //     vscode.window.showTextDocument(doc, { preserveFocus: true, viewColumn: vscode.ViewColumn.Beside }).then(doc => {
@@ -451,19 +343,18 @@ export default class ExtensionProvider {
         //     //await vscode.window.showTextDocument(doc, { preview: false });
         // });
 
-
-
-
-
         // v.viewColumn
-
-
     }
-    registerViews() {
+
+    registerSideViews() {
         new FileExplorer(this);
+        new CommandView(this._context);
+        new ToolbarView(this._context);
+        new JustViews(this._context, this);
     }
+
     initializeThePanel() {
-        console.log('create webview')
+        //console.log('create webview')
         this._panel = vscode.window.createWebviewPanel(
             'EXT',
             'Ext JS Designer',
@@ -495,6 +386,7 @@ export default class ExtensionProvider {
         }, 1000);
         this.setMessagesFromWebview();
     }
+
     setAppJS() {
         //this._workspaceName, this._extensionPath, 
         var filePath = 'no file'
@@ -528,6 +420,7 @@ Ext.application({
             console.log(e)
         }
     }
+
     public getHtmlInitial() {
         var a = `
 <!DOCTYPE HTML>
@@ -554,11 +447,6 @@ ${head(this._workspaceName, this._workspaceRootPath)}
     }
 
     registerStatusBarButtons() {
-        //this.loadStatusBarButton({name: 'a', tooltip: 'a', vsCommand: 'extension.a'})
-
-        //vscode.window.showInputBox()
-        //this.loadStatusBarButton({name: 'mjg', tooltip: 'my test command', vsCommand: 'fileExplorer.show'})
-        //this.loadStatusBarButton({name: 'Chrome Debugger $(eye)', tooltip: 'Show Chrome Debugger',vsCommand: 'workbench.action.webview.openDeveloperTools'}); //$(eye~spin)
 
         this.loadStatusBarButton({
             name: 'Ext JS Designer',
@@ -582,13 +470,6 @@ ${head(this._workspaceName, this._workspaceRootPath)}
         //     tooltip: 'Show Ext JS Designer'
         // });
 
-        this.loadStatusBarButton({
-            name: 'ESLint',
-            vsCommand: 'eslint.executeAutofix',
-            color: 'white',
-            tooltip: 'Run ESLint'
-        });
-
         // this.loadStatusBarButton({
         //     name: 'showVisibleTextEditors',
         //     vsCommand: 'extension.showVisibleTextEditors',
@@ -596,9 +477,8 @@ ${head(this._workspaceName, this._workspaceRootPath)}
         // })
     }
 
-
-    loadStatusBarButton2( command: string) {
-        var sbi:StatusBarItem =     { name: command, tooltip: command, vsCommand: 'extension.' + command }
+    loadStatusBarButton2(command: string) {
+        var sbi: StatusBarItem = { name: command, tooltip: command, vsCommand: 'extension.' + command }
         //const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
         const statusBarItem = vscode.window.createStatusBarItem(1, 0)
         statusBarItem.text = sbi.name
@@ -619,6 +499,7 @@ ${head(this._workspaceName, this._workspaceRootPath)}
         statusBarItem.show()
         this._context.subscriptions.push(statusBarItem);
     }
+
     updateDecorations(activeEditor) {
         if (!activeEditor) {
             return;
@@ -641,6 +522,7 @@ ${head(this._workspaceName, this._workspaceRootPath)}
         activeEditor.setDecorations(this.smallNumberDecorationType, smallNumbers);
         activeEditor.setDecorations(this.largeNumberDecorationType, largeNumbers);
     }
+
     registerTextDecorations() {
         this.smallNumberDecorationType = vscode.window.createTextEditorDecorationType({
             borderWidth: '1px',
@@ -663,6 +545,7 @@ ${head(this._workspaceName, this._workspaceRootPath)}
             backgroundColor: { id: 'myextension.largeNumberBackground' }
         });
     }
+
     //from fileExplorer
     fileSelected(resource) {
         var filePath = resource.path;
@@ -703,6 +586,7 @@ ${head(this._workspaceName, this._workspaceRootPath)}
             vscode.window.showTextDocument(resource, vscode.ViewColumn.Two);
         }
     }
+
     setMessagesFromWebview() {
         this._panel.webview.onDidReceiveMessage(message => {
             switch (message.command) {
@@ -751,7 +635,6 @@ ${head(this._workspaceName, this._workspaceRootPath)}
         )
     };
 
-
     registerCommandButton(command, cb) {
         let commandDisposable = vscode.commands.registerCommand("extension." + command, cb);
         this._context.subscriptions.push(commandDisposable);
@@ -760,14 +643,11 @@ ${head(this._workspaceName, this._workspaceRootPath)}
     }
 
     registerCommandButton2(command) {
- //       let commandDisposable = vscode.commands.registerCommand("extension." + command, cb);
-  //      this._context.subscriptions.push(commandDisposable);
-
-
+        //       let commandDisposable = vscode.commands.registerCommand("extension." + command, cb);
+        //      this._context.subscriptions.push(commandDisposable);
         //this._context.subscriptions.push(vscode.commands.registerCommand("extension." + command, cb));
         //this.loadStatusBarButton({ name: command, tooltip: command, vsCommand: 'extension.' + command })
     }
-
 
     registerTests() {
         //var command
@@ -803,9 +683,6 @@ ${head(this._workspaceName, this._workspaceRootPath)}
         // }))
         // this.loadStatusBarButton({ name: command, tooltip: command, vsCommand: 'extension.' + command })
 
-
-
-
         // command = 'showealleditors'
         // this._context.subscriptions.push(vscode.commands.registerCommand("extension." + command, () => {
         //     console.log('here')
@@ -814,10 +691,6 @@ ${head(this._workspaceName, this._workspaceRootPath)}
         //     })
         // }))
         // this.loadStatusBarButton({ name: command, tooltip: command, vsCommand: 'extension.' + command })
-
-
-
-
     }
     dispose() { }
 }

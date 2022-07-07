@@ -157,7 +157,7 @@
     "devDependencies": {
         "vscode-express": " ^1.0.1",
         "monaco-editor": " ^0.17.1",
-        "moment": "^2.24.0",
+        "moment": "^2.29.4",
         "split-grid": "^1.0.9",
         "esprima": "~4.0.1",
         "escodegen": "~1.11.1",
